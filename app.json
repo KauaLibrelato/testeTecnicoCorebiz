@@ -2,6 +2,7 @@
   "expo": {
     "name": "testetecnicocorebiz",
     "slug": "testetecnicocorebiz",
+    "newArchEnabled": true,
     "version": "1.0.0",
     "web": {
       "favicon": "./assets/favicon.png"
