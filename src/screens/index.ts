@@ -1,1 +1,2 @@
-export * from "./Screen1/Screen1";
+export * from "./Details/Details";
+export * from "./Home/Home";
