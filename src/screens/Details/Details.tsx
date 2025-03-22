@@ -4,7 +4,8 @@ import React, { useRef } from "react";
 import { Animated } from "react-native";
 import { useTheme } from "styled-components/native";
 
-import { Text } from "../../components";
+import { Button, Text } from "../../components";
+import { EButtonType } from "../../infra";
 import { NavigationProps } from "../../routes/utils/types";
 
 import * as S from "./DetailsStyles";
@@ -86,7 +87,9 @@ export function Details() {
                     R$ 100,00
                 </Text>
 
-                {/* <Button title="Comprar" /> */}
+                <S.ButtonContainer>
+                    <Button text="Comprar" type={EButtonType.FILL} />
+                </S.ButtonContainer>
             </S.Footer>
         </>
     );

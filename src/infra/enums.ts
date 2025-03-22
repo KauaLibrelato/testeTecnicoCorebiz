@@ -1,3 +1,4 @@
-export enum EScreenType {
-    DETAILS = "Details",
+export enum EButtonType {
+    FILL = "Fill",
+    OUTLINE = "Outline",
 }

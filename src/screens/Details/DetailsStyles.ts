@@ -9,7 +9,7 @@ export const Container = styled.ScrollView.attrs({
     showsVerticalScrollIndicator: false,
 })`
     flex: 1;
-    margin-bottom: 64px;
+    margin-bottom: 1000px;
 `;
 
 export const Header = styled.View``;
@@ -44,12 +44,18 @@ export const Body = styled.View`
 
 export const Footer = styled.View`
     position: absolute;
-    justify-content: center;
-    background-color: ${({ theme }: ITheme) => theme.colors.background};
+    z-index: 2;
     bottom: 0;
     width: 100%;
     padding: 16px 16px ${initialWindowMetrics?.insets.bottom}px 16px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: ${({ theme }: ITheme) => theme.colors.background};
     border-top-width: 1px;
     border-top-color: ${({ theme }: ITheme) => theme.colors.disabled};
-    z-index: 2;
+`;
+
+export const ButtonContainer = styled.View`
+    width: 45%;
 `;
