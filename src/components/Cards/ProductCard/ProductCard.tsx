@@ -1,6 +1,7 @@
 import React from "react";
 import { useTheme } from "styled-components/native";
 
+import { blurhash } from "../../../utils/constants";
 import { capitalizeFirstLetter } from "../../../utils/functions";
 import { Text } from "../../Others/Text/Text";
 
@@ -18,7 +19,11 @@ export function ProductCard({ data, onPress }: IProductCard) {
     return (
         <S.Container>
             <S.TouchableContainer onPress={onPress}>
-                <S.Miniature source={{ uri: data?.urls?.regular }} contentFit="cover" />
+                <S.Miniature
+                    source={{ uri: data?.urls?.regular }}
+                    contentFit="cover"
+                    placeholder={{ blurhash }}
+                />
                 <S.CategoryBadge>
                     <Text
                         fontSize={14}

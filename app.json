@@ -7,23 +7,16 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "icon": "./assets/ios-dark.png",
+    "icon": "./assets/icon-dark.png",
     "experiments": {
       "tsconfigPaths": true
     },
+    "splash": {
+      "image": "./assets/splash-icon-dark.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "plugins": [
-      [
-        "expo-splash-screen",
-        {
-          "image": "./assets/splash-icon-dark.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff",
-          "dark": {
-            "image": "./assets/splash-icon-light.png"
-          }
-        }
-      ],
       "expo-font"
     ],
     "orientation": "portrait",
@@ -32,12 +25,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "icon": {
-        "dark": "./assets/ios-dark.png",
-        "light": "./assets/ios-light.png",
-        "tinted": "./assets/ios-tinted.png"
-      }
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
