@@ -6,20 +6,17 @@ import { IPhoto } from "../../../utils/types";
 
 export function useQueries() {
     const [searchQuery, setSearchQuery] = useState<string>("");
-
     const { data, isLoading, refetch, fetchNextPage, isFetching } = useInfiniteQuery({
         initialPageParam: 1,
         queryKey: ["photos", searchQuery],
-        staleTime: 300000, // 5 minutos para que as imagens não sofram alterações enquanto app estiver aberto
+        staleTime: 1000 * 60 * 5,
         queryFn: async ({ pageParam = 1 }) => {
             let fetchedPhotos: IPhoto[] = [];
             if (searchQuery) {
                 const queryPhotos = await getQueryPhotos(pageParam, searchQuery);
-                console.log("📸 QUERYPHOTOS");
                 fetchedPhotos = queryPhotos?.results ?? [];
             } else {
                 const randomPhotos = await getRandomPhotos();
-                console.log("🎲 RANDOMPHOTOS");
                 fetchedPhotos = randomPhotos ?? [];
             }
 
