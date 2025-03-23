@@ -8,6 +8,7 @@ export interface ITheme {
             success: string;
             disabled: string;
             placeholder: string;
+            white: string;
         };
         fonts: {
             regular: string;

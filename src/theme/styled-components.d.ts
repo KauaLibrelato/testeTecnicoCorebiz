@@ -1,21 +1,6 @@
 import "styled-components/native";
+import { ITheme } from "./utils/types";
 
 declare module "styled-components/native" {
-    export interface DefaultTheme {
-        colors: {
-            primary: string;
-            secondary: string;
-            background: string;
-            error: string;
-            success: string;
-            disabled: string;
-            placeholder: string;
-        };
-        fonts: {
-            regular: string;
-            medium: string;
-            semiBold: string;
-            bold: string;
-        };
-    }
+    export interface DefaultTheme extends ITheme {}
 }

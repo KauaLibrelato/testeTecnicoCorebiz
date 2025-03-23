@@ -7,6 +7,7 @@ export const lightTheme = {
         success: "#2ECC71",
         disabled: "#B0B0B0",
         placeholder: "#A0A0A0",
+        white: "#FFFFFF",
     },
     fonts: {
         regular: "Inter_400Regular",
