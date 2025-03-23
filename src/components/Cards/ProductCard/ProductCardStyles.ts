@@ -3,12 +3,23 @@ import styled from "styled-components/native";
 
 import { ITheme } from "../../../theme/utils/types";
 
-export const Container = styled.TouchableOpacity.attrs({
+export const Container = styled.View.attrs({
+    shadowColor: "#333333",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+})``;
+
+export const TouchableContainer = styled.TouchableOpacity.attrs({
     activeOpacity: 0.7,
 })`
     overflow: hidden;
-    background-color: ${({ theme }: ITheme) => theme.colors.background};
+    background-color: ${({ theme }: ITheme) => theme.colors.white};
     margin-bottom: 16px;
+    border-radius: 16px;
+    shadowcolor: "#333333";
+    shadowopacity: 0.2;
+    elevation: 3;
 `;
 
 export const Miniature = styled(Image)`
@@ -33,26 +44,7 @@ export const CategoryBadgeText = styled.Text`
     color: ${({ theme }: ITheme) => theme.colors.primary};
 `;
 
-export const FavoriteButton = styled.TouchableOpacity`
-    padding: 8px;
-    border-radius: 16px;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-`;
-
 export const TextsContainer = styled.View`
     gap: 4px;
-`;
-
-export const Title = styled.Text`
-    font-size: 16px;
-    font-family: ${({ theme }: ITheme) => theme.fonts.bold};
-    color: ${({ theme }: ITheme) => theme.colors.primary};
-`;
-
-export const Description = styled.Text`
-    font-size: 14px;
-    font-family: ${({ theme }: ITheme) => theme.fonts.medium};
-    color: ${({ theme }: ITheme) => theme.colors.primary};
+    padding: 0 8px 8px 8px;
 `;

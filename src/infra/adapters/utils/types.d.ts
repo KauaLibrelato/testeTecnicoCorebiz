@@ -6,4 +6,5 @@ type IAxiosAdapter = {
     query?: {
         [key: string]: any;
     };
+    errorTitle: string;
 };

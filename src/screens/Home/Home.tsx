@@ -1,48 +1,40 @@
+import AntDesign from "@expo/vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 import { FlashList } from "@shopify/flash-list";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { Keyboard } from "react-native";
+import { useTheme } from "styled-components/native";
 
 import Logo from "../../assets/svgs/logo.svg";
-import { ControlledTextInput, ScreenContent } from "../../components";
+import { Button, ControlledTextInput, ScreenContent } from "../../components";
 import { ProductCard } from "../../components/Cards/ProductCard/ProductCard";
 import { NavigationProps } from "../../routes/utils/types";
 
 import * as S from "./HomeStyles";
+import { useQueries } from "./utils/useQueries";
+
 export function Home() {
     const navigation = useNavigation<NavigationProps>();
-    const { control, handleSubmit } = useForm();
-    const teste = [
-        {
-            id: "1",
-            imageUrl: "https://wallpapers.com/images/hd/bright-blue-full-moon-3aezu4sm39ywd0ua.jpg",
-            title: "Paisagem Natural",
-            photographer: "John Doe",
-            category: "Fotografia Criativa",
-        },
-        {
-            id: "2",
-            imageUrl: "https://wallpapers.com/images/hd/bright-blue-full-moon-3aezu4sm39ywd0ua.jpg",
-            title: "Cidade Moderna",
-            photographer: "Jane Smith",
-            category: "Arquitetura",
-        },
-        {
-            id: "3",
-            imageUrl: "https://wallpapers.com/images/hd/bright-blue-full-moon-3aezu4sm39ywd0ua.jpg",
-            title: "Paisagem Natural",
-            photographer: "John Doe",
-            category: "Fotografia Criativa",
-        },
-        {
-            id: "4",
-            imageUrl: "https://wallpapers.com/images/hd/bright-blue-full-moon-3aezu4sm39ywd0ua.jpg",
-            title: "Cidade Moderna",
-            photographer: "Jane Smith",
-            category: "Arquitetura",
-        },
-    ];
+    const theme = useTheme();
+    const { control, handleSubmit, reset, watch } = useForm();
+    const {
+        data: photos,
+        fetchNextPage,
+        isLoading,
+        refetch,
+        setSearchQuery,
+        isFetching,
+        searchQuery,
+    } = useQueries();
 
+    const onSubmit = handleSubmit(({ search }) => {
+        setSearchQuery(search);
+    });
+
+    const searchValue = watch("search", "");
+    const allPhotos = photos?.pages.flatMap((page) => page.photos) ?? [];
+    console.log("SEARCHQUERYHOME: ", searchQuery);
     return (
         <ScreenContent>
             <S.LogoContainer>
@@ -51,21 +43,71 @@ export function Home() {
             <S.Header>
                 <ControlledTextInput
                     control={control}
-                    name="searchQuery"
-                    placeholder="Buscar por categoria ou estilo de imagem"
-                    onSubmitEditing={handleSubmit((data) => console.log(data))}
+                    name="search"
+                    placeholder="Search for category or style"
+                    onSubmitEditing={() => {
+                        onSubmit();
+                    }}
                 />
-            </S.Header>
-            <FlashList
-                data={teste}
-                renderItem={({ item }) => (
-                    <ProductCard data={item} onPress={() => navigation.navigate("Details")} />
+
+                {searchValue.length > 0 && (
+                    <S.ClearButton
+                        onPress={() => {
+                            reset();
+                            if (searchQuery) {
+                                console.log("RESETANDO");
+                                setSearchQuery("");
+                                refetch();
+                            }
+                            Keyboard.dismiss();
+                        }}
+                    >
+                        <AntDesign name="closecircleo" size={24} color={theme.colors.primary} />
+                    </S.ClearButton>
                 )}
-                onEndReached={() => console.log("end reached")}
-                onEndReachedThreshold={0.3}
-                estimatedItemSize={200}
-                showsVerticalScrollIndicator={false}
-            />
+            </S.Header>
+
+            {isLoading && (
+                <S.LoadingContainer>
+                    <S.LoadingIndicator size="large" color={theme.colors.primary} />
+                </S.LoadingContainer>
+            )}
+            {!isLoading && (
+                <FlashList
+                    data={allPhotos}
+                    renderItem={({ item: image }) => (
+                        <ProductCard
+                            data={image}
+                            onPress={() => navigation.navigate("Details", { data: image })}
+                        />
+                    )}
+                    onEndReached={() => fetchNextPage()}
+                    onEndReachedThreshold={0.3}
+                    estimatedItemSize={200}
+                    showsVerticalScrollIndicator={false}
+                    ListFooterComponent={() =>
+                        isFetching ? (
+                            <S.LoadingContainer>
+                                <S.LoadingIndicator size="large" color={theme.colors.primary} />
+                            </S.LoadingContainer>
+                        ) : null
+                    }
+                    ListEmptyComponent={() =>
+                        !isLoading &&
+                        !isFetching && (
+                            <S.EmptyList>
+                                <AntDesign name="frowno" size={32} color={theme.colors.primary} />
+                                <S.EmptyListText>Nenhum resultado encontrado</S.EmptyListText>
+                                <Button
+                                    onPress={() => refetch()}
+                                    text="Tentar novamente"
+                                    type={undefined}
+                                />
+                            </S.EmptyList>
+                        )
+                    }
+                />
+            )}
         </ScreenContent>
     );
 }

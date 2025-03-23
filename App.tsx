@@ -9,11 +9,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect } from "react";
-import "react-native-gesture-handler";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { Toaster } from "sonner-native";
 
 import { RootStack } from "./src/routes";
 import { ThemeProvider } from "./src/theme/Theme";
+
 export default function App() {
     const queryClient = new QueryClient();
     const [fontsLoaded] = useFonts({
@@ -38,12 +40,15 @@ export default function App() {
     }
     return (
         <QueryClientProvider client={queryClient}>
-            <ThemeProvider>
-                <SafeAreaProvider>
-                    <StatusBar style="dark" translucent />
-                    <RootStack />
-                </SafeAreaProvider>
-            </ThemeProvider>
+            <GestureHandlerRootView style={{ flex: 1 }}>
+                <ThemeProvider>
+                    <SafeAreaProvider>
+                        <StatusBar style="dark" translucent />
+                        <RootStack />
+                        <Toaster />
+                    </SafeAreaProvider>
+                </ThemeProvider>
+            </GestureHandlerRootView>
         </QueryClientProvider>
     );
 }

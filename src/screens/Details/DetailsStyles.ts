@@ -9,25 +9,31 @@ export const Container = styled.ScrollView.attrs({
     showsVerticalScrollIndicator: false,
 })`
     flex: 1;
-    margin-bottom: 1000px;
 `;
 
-export const Header = styled.View``;
+export const Header = styled(Animated.View)`
+    padding: 8px 0px;
+`;
 
 export const BackButton = styled.TouchableOpacity.attrs({
     activeOpacity: 0.7,
 })`
-    z-index: 3;
+    background-color: ${({ theme }: ITheme) => theme.colors.background};
+    margin-top: ${initialWindowMetrics?.insets.top ?? 32}px;
     width: 48px;
     height: 48px;
     border-radius: 24px;
-    align-items: center;
     justify-content: center;
-    background-color: ${({ theme }: ITheme) => theme.colors.background};
+    align-items: center;
+`;
+
+export const HeaderBorder = styled(Animated.View)`
     position: absolute;
-    top: ${initialWindowMetrics?.insets.top}px;
-    left: 16px;
-    border: 1px solid ${({ theme }: ITheme) => theme.colors.secondary};
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: ${({ theme }: ITheme) => theme.colors.disabled};
 `;
 
 export const ImageContainer = styled.View``;
@@ -40,6 +46,7 @@ export const Image = styled(Animated.createAnimatedComponent(ExpoImage))`
 export const Body = styled.View`
     padding: 16px;
     gap: 8px;
+    padding-bottom: 120px;
 `;
 
 export const Footer = styled.View`
@@ -47,7 +54,7 @@ export const Footer = styled.View`
     z-index: 2;
     bottom: 0;
     width: 100%;
-    padding: 16px 16px ${initialWindowMetrics?.insets.bottom}px 16px;
+    padding: 16px 16px ${initialWindowMetrics?.insets.bottom ?? 16}px 16px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
