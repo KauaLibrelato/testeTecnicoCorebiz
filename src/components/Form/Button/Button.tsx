@@ -24,7 +24,9 @@ export function Button({
 
     return (
         <S.FillContainer {...rest} bgColor={bgColor} disabled={disabled}>
-            <S.Text colorText={colorText}>{text}</S.Text>
+            <S.Text maxFontSizeMultiplier={1.2} colorText={colorText}>
+                {text}
+            </S.Text>
         </S.FillContainer>
     );
 }

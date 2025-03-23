@@ -20,7 +20,11 @@ export function Input({
     return (
         <S.Container>
             {label && (
-                <S.Label editable={editable} errorMessage={!!errorMessage}>
+                <S.Label
+                    maxFontSizeMultiplier={1.2}
+                    editable={editable}
+                    errorMessage={!!errorMessage}
+                >
                     {label}
                 </S.Label>
             )}
@@ -29,8 +33,11 @@ export function Input({
                 errorMessage={!!errorMessage}
                 editable={editable}
                 placeholderTextColor={errorMessage ? theme.colors.error : theme.colors.placeholder}
+                maxFontSizeMultiplier={1.2}
             />
-            {errorMessage && <S.ErrorMessage>{errorMessage}</S.ErrorMessage>}
+            {errorMessage && (
+                <S.ErrorMessage maxFontSizeMultiplier={1.2}>{errorMessage}</S.ErrorMessage>
+            )}
         </S.Container>
     );
 }

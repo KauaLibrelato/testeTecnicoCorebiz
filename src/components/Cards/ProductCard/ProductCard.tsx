@@ -23,6 +23,7 @@ export function ProductCard({ data, onPress }: IProductCard) {
                     source={{ uri: data?.urls?.regular }}
                     contentFit="cover"
                     placeholder={{ blurhash }}
+                    alt={data?.alt_description ?? "Without description"}
                 />
                 <S.CategoryBadge>
                     <Text

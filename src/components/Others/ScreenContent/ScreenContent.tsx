@@ -22,11 +22,17 @@ export function ScreenContent({
                 style={{ flex: 1 }}
                 behavior={Platform.OS === "ios" ? "padding" : "height"}
             >
-                <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+                <TouchableWithoutFeedback
+                    onPress={Keyboard.dismiss}
+                    accessible={false}
+                    testID="dismiss-button"
+                >
                     {isScrollable ? (
-                        <S.ContainerScroll>{children}</S.ContainerScroll>
+                        <S.ContainerScroll testID="scrollable-container">
+                            {children}
+                        </S.ContainerScroll>
                     ) : (
-                        <S.Container>{children}</S.Container>
+                        <S.Container testID="non-scrollable-container">{children}</S.Container>
                     )}
                 </TouchableWithoutFeedback>
             </KeyboardAvoidingView>
