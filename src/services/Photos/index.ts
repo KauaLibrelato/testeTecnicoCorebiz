@@ -8,6 +8,7 @@ export async function getRandomPhotos() {
         query: {
             count: 15,
         },
+        errorTitle: "Error when fetching random photos",
     });
     return response;
 }
@@ -21,6 +22,7 @@ export async function getQueryPhotos(page: number, query: string) {
             per_page: 15,
             query,
         },
+        errorTitle: "Error when fetching photos",
     });
 
     return response;

@@ -4,7 +4,6 @@ import styled from "styled-components/native";
 import { ITheme } from "../../../theme/utils/types";
 
 export const Container = styled.View.attrs({
-    elevation: 5,
     shadowColor: "#333333",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
@@ -15,9 +14,12 @@ export const TouchableContainer = styled.TouchableOpacity.attrs({
     activeOpacity: 0.7,
 })`
     overflow: hidden;
-    background-color: white;
+    background-color: ${({ theme }: ITheme) => theme.colors.white};
     margin-bottom: 16px;
     border-radius: 16px;
+    shadowcolor: "#333333";
+    shadowopacity: 0.2;
+    elevation: 3;
 `;
 
 export const Miniature = styled(Image)`

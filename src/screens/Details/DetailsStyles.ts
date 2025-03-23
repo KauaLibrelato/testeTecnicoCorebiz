@@ -19,7 +19,7 @@ export const BackButton = styled.TouchableOpacity.attrs({
     activeOpacity: 0.7,
 })`
     background-color: ${({ theme }: ITheme) => theme.colors.background};
-    margin-top: ${initialWindowMetrics?.insets.top}px;
+    margin-top: ${initialWindowMetrics?.insets.top ?? 32}px;
     width: 48px;
     height: 48px;
     border-radius: 24px;
@@ -54,7 +54,7 @@ export const Footer = styled.View`
     z-index: 2;
     bottom: 0;
     width: 100%;
-    padding: 16px 16px ${initialWindowMetrics?.insets.bottom}px 16px;
+    padding: 16px 16px ${initialWindowMetrics?.insets.bottom ?? 16}px 16px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;

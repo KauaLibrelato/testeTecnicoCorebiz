@@ -3,13 +3,13 @@ import { useNavigation } from "@react-navigation/native";
 import { FlashList } from "@shopify/flash-list";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { Keyboard } from "react-native";
 import { useTheme } from "styled-components/native";
 
 import Logo from "../../assets/svgs/logo.svg";
 import { Button, ControlledTextInput, ScreenContent } from "../../components";
 import { ProductCard } from "../../components/Cards/ProductCard/ProductCard";
 import { NavigationProps } from "../../routes/utils/types";
-import { usePhotosStore } from "../../store/store";
 
 import * as S from "./HomeStyles";
 import { useQueries } from "./utils/useQueries";
@@ -17,15 +17,24 @@ import { useQueries } from "./utils/useQueries";
 export function Home() {
     const navigation = useNavigation<NavigationProps>();
     const theme = useTheme();
-    const { control, handleSubmit, reset } = useForm();
-    const { photos } = usePhotosStore((state) => state);
-    const { fetchNextPage, isLoading, refetch, setSearchQuery, isFetching } = useQueries();
+    const { control, handleSubmit, reset, watch } = useForm();
+    const {
+        data: photos,
+        fetchNextPage,
+        isLoading,
+        refetch,
+        setSearchQuery,
+        isFetching,
+        searchQuery,
+    } = useQueries();
 
-    const onSubmit = handleSubmit(({ searchQuery }) => {
-        setSearchQuery(searchQuery);
-        refetch();
+    const onSubmit = handleSubmit(({ search }) => {
+        setSearchQuery(search);
     });
 
+    const searchValue = watch("search", "");
+    const allPhotos = photos?.pages.flatMap((page) => page.photos) ?? [];
+    console.log("SEARCHQUERYHOME: ", searchQuery);
     return (
         <ScreenContent>
             <S.LogoContainer>
@@ -34,22 +43,28 @@ export function Home() {
             <S.Header>
                 <ControlledTextInput
                     control={control}
-                    name="searchQuery"
-                    placeholder="Buscar categoria ou estilo"
+                    name="search"
+                    placeholder="Search for category or style"
                     onSubmitEditing={() => {
                         onSubmit();
                     }}
                 />
 
-                <S.ClearButton
-                    onPress={() => {
-                        reset();
-                        setSearchQuery("");
-                        refetch();
-                    }}
-                >
-                    <AntDesign name="closecircleo" size={24} color={theme.colors.primary} />
-                </S.ClearButton>
+                {searchValue.length > 0 && (
+                    <S.ClearButton
+                        onPress={() => {
+                            reset();
+                            if (searchQuery) {
+                                console.log("RESETANDO");
+                                setSearchQuery("");
+                                refetch();
+                            }
+                            Keyboard.dismiss();
+                        }}
+                    >
+                        <AntDesign name="closecircleo" size={24} color={theme.colors.primary} />
+                    </S.ClearButton>
+                )}
             </S.Header>
 
             {isLoading && (
@@ -59,7 +74,7 @@ export function Home() {
             )}
             {!isLoading && (
                 <FlashList
-                    data={photos}
+                    data={allPhotos}
                     renderItem={({ item: image }) => (
                         <ProductCard
                             data={image}

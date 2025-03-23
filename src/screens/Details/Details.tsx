@@ -7,6 +7,7 @@ import { useTheme } from "styled-components/native";
 import { Button, Text } from "../../components";
 import { EButtonType } from "../../infra";
 import { NavigationProps } from "../../routes/utils/types";
+import { capitalizeFirstLetter, imageFit } from "../../utils/functions";
 import { IPhoto } from "../../utils/types";
 
 import * as S from "./DetailsStyles";
@@ -31,12 +32,7 @@ export function Details() {
     const category =
         params?.data?.tags?.[0]?.title ||
         Object.keys(params?.data?.topic_submissions ?? {})[0]?.replace(/-/g, " ") ||
-        "Sem categoria";
-
-    const capitalizeFirstLetter = (text?: string) => {
-        if (!text) return "Sem categoria";
-        return text.charAt(0).toUpperCase() + text.slice(1);
-    };
+        "Without category";
 
     useEffect(() => {
         navigation.setOptions({
@@ -64,7 +60,7 @@ export function Details() {
                         source={{
                             uri: params?.data?.urls?.regular,
                         }}
-                        contentFit="contain" //rever uma logica dependendo do aspect ratio da imagem para usar cover ou contain
+                        contentFit={imageFit(params?.data?.width, params?.data?.height)}
                         style={{ opacity: imageOpacity }}
                     />
                 </S.ImageContainer>
@@ -77,7 +73,7 @@ export function Details() {
                     </Text>
 
                     <Text color={theme.colors.primary} fontFamily={theme.fonts.bold} fontSize={16}>
-                        Autor: {params?.data?.user?.name ?? "Sem autor"}
+                        Author: {params?.data?.user?.name ?? "Without author"}
                     </Text>
 
                     <Text
@@ -85,17 +81,17 @@ export function Details() {
                         fontFamily={theme.fonts.semiBold}
                         fontSize={16}
                     >
-                        Categoria: {capitalizeFirstLetter(category)}
+                        Category: {capitalizeFirstLetter(category)}
                     </Text>
                 </S.Body>
             </S.Container>
             <S.Footer>
                 <Text color={theme.colors.primary} fontFamily={theme.fonts.bold} fontSize={20}>
-                    R$ 100,00
+                    $ 100.00
                 </Text>
 
                 <S.ButtonContainer>
-                    <Button text="Comprar" type={EButtonType.FILL} />
+                    <Button text="Buy" type={EButtonType.FILL} />
                 </S.ButtonContainer>
             </S.Footer>
         </>

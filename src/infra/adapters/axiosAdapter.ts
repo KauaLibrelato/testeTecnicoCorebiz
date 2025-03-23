@@ -1,8 +1,9 @@
 import { AxiosError, AxiosResponse } from "axios";
+import { toast } from "sonner-native";
 
 import { api } from "../../services/api";
 
-export const axiosAdapter = async <T>({ method, url, data, query }: IAxiosAdapter) => {
+export const axiosAdapter = async <T>({ method, url, data, query, errorTitle }: IAxiosAdapter) => {
     let axiosResponse: AxiosResponse<T> | undefined;
 
     try {
@@ -12,6 +13,7 @@ export const axiosAdapter = async <T>({ method, url, data, query }: IAxiosAdapte
             data,
         });
     } catch (error) {
+        toast.error(errorTitle);
         axiosResponse = undefined;
         const err = error as AxiosError<{ message: string }>;
         throw err;
