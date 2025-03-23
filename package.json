@@ -36,8 +36,7 @@
     "react-native-screens": "~4.4.0",
     "react-native-svg": "^15.11.1",
     "sonner-native": "^0.17.0",
-    "styled-components": "^6.1.14",
-    "zustand": "^4.5.1"
+    "styled-components": "^6.1.14"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

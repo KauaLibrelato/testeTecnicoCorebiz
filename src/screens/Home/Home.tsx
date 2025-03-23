@@ -32,9 +32,17 @@ export function Home() {
         setSearchQuery(search);
     });
 
+    const clearSearch = () => {
+        reset();
+        if (searchQuery) {
+            setSearchQuery("");
+            refetch();
+        }
+        Keyboard.dismiss();
+    };
+
     const searchValue = watch("search", "");
     const allPhotos = photos?.pages.flatMap((page) => page.photos) ?? [];
-    console.log("SEARCHQUERYHOME: ", searchQuery);
     return (
         <ScreenContent>
             <S.LogoContainer>
@@ -51,17 +59,7 @@ export function Home() {
                 />
 
                 {searchValue.length > 0 && (
-                    <S.ClearButton
-                        onPress={() => {
-                            reset();
-                            if (searchQuery) {
-                                console.log("RESETANDO");
-                                setSearchQuery("");
-                                refetch();
-                            }
-                            Keyboard.dismiss();
-                        }}
-                    >
+                    <S.ClearButton onPress={() => clearSearch()}>
                         <AntDesign name="closecircleo" size={24} color={theme.colors.primary} />
                     </S.ClearButton>
                 )}
