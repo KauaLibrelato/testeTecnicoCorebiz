@@ -13,12 +13,6 @@
     },
     "plugins": [
       [
-        "expo-dev-launcher",
-        {
-          "launchMode": "most-recent"
-        }
-      ],
-      [
         "expo-splash-screen",
         {
           "image": "./assets/splash-icon-dark.png",
@@ -29,7 +23,8 @@
             "image": "./assets/splash-icon-light.png"
           }
         }
-      ]
+      ],
+      "expo-font"
     ],
     "orientation": "portrait",
     "userInterfaceStyle": "light",

@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@expo-google-fonts/inter": "^0.2.3",
     "@expo/vector-icons": "^14.0.0",
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-navigation/native": "^7.0.3",
@@ -21,9 +22,8 @@
     "@types/styled-components-react-native": "^5.2.5",
     "axios": "^1.7.9",
     "expo": "^52.0.30",
-    "expo-constants": "~17.0.8",
-    "expo-dev-client": "~5.0.4",
-    "expo-dev-launcher": "^5.0.17",
+    "expo-font": "~13.0.4",
+    "expo-image": "~2.0.6",
     "expo-splash-screen": "~0.29.22",
     "expo-status-bar": "~2.0.1",
     "react": "18.3.1",
@@ -36,7 +36,6 @@
     "react-native-screens": "~4.4.0",
     "react-native-svg": "^15.11.1",
     "styled-components": "^6.1.14",
-    "zod": "^3.24.1",
     "zustand": "^4.5.1"
   },
   "devDependencies": {
