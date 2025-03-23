@@ -1,16 +1,24 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { Screen1 } from "../screens";
-import { RootStackParamList } from "./types";
+import { Details, Home } from "../screens";
+
+import { RootStackParamList } from "./utils/types";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
 export function RootStack() {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Screen1">
-                <Stack.Screen name="Screen1" component={Screen1} />
+            <Stack.Navigator initialRouteName="Home">
+                <Stack.Screen
+                    name="Home"
+                    component={Home}
+                    options={{
+                        headerShown: false,
+                    }}
+                />
+                <Stack.Screen name="Details" component={Details} />
             </Stack.Navigator>
         </NavigationContainer>
     );
