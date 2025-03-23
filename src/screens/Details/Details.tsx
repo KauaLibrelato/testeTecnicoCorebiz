@@ -1,18 +1,19 @@
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { useNavigation } from "@react-navigation/native";
-import React, { useRef } from "react";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import React, { useEffect, useRef } from "react";
 import { Animated } from "react-native";
 import { useTheme } from "styled-components/native";
 
 import { Button, Text } from "../../components";
 import { EButtonType } from "../../infra";
 import { NavigationProps } from "../../routes/utils/types";
+import { IPhoto } from "../../utils/types";
 
 import * as S from "./DetailsStyles";
 export function Details() {
+    const params = useRoute().params as { data: IPhoto };
     const theme = useTheme();
     const navigation = useNavigation<NavigationProps>();
-
     const scrollY = useRef(new Animated.Value(0)).current;
 
     const imageOpacity = scrollY.interpolate({
@@ -21,64 +22,70 @@ export function Details() {
         extrapolate: "clamp",
     });
 
+    const borderOpacity = scrollY.interpolate({
+        inputRange: [100, 250],
+        outputRange: [0, 1],
+        extrapolate: "clamp",
+    });
+
+    const category =
+        params?.data?.tags?.[0]?.title ||
+        Object.keys(params?.data?.topic_submissions ?? {})[0]?.replace(/-/g, " ") ||
+        "Sem categoria";
+
+    const capitalizeFirstLetter = (text?: string) => {
+        if (!text) return "Sem categoria";
+        return text.charAt(0).toUpperCase() + text.slice(1);
+    };
+
+    useEffect(() => {
+        navigation.setOptions({
+            header: () => (
+                <S.Header>
+                    <S.BackButton onPress={() => navigation.goBack()}>
+                        <AntDesign name="left" size={24} color={theme.colors.primary} />
+                    </S.BackButton>
+                    <S.HeaderBorder style={{ opacity: borderOpacity }} />
+                </S.Header>
+            ),
+            headerTitle: "",
+        });
+    }, [borderOpacity, navigation, theme.colors.primary]);
+
     return (
         <>
-            <S.BackButton onPress={() => navigation.goBack()}>
-                <AntDesign name="left" size={24} color={theme.colors.primary} />
-            </S.BackButton>
             <S.Container
                 onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
                     useNativeDriver: false,
                 })}
             >
-                <S.Header>
-                    <S.ImageContainer>
-                        <S.Image
-                            source={{
-                                uri: "https://wallpapers.com/images/hd/bright-blue-full-moon-3aezu4sm39ywd0ua.jpg",
-                            }}
-                            contentFit="cover"
-                            style={{ opacity: imageOpacity }}
-                        />
-                    </S.ImageContainer>
-                </S.Header>
+                <S.ImageContainer>
+                    <S.Image
+                        source={{
+                            uri: params?.data?.urls?.regular,
+                        }}
+                        contentFit="contain" //rever uma logica dependendo do aspect ratio da imagem para usar cover ou contain
+                        style={{ opacity: imageOpacity }}
+                    />
+                </S.ImageContainer>
 
                 <S.Body>
                     <Text color={theme.colors.primary} fontFamily={theme.fonts.bold} fontSize={24}>
-                        Paisagem Natural
+                        {params?.data?.description ??
+                            params?.data?.alt_description ??
+                            "Sem descrição"}
                     </Text>
-                    <Text
-                        color={theme.colors.primary}
-                        fontFamily={theme.fonts.regular}
-                        fontSize={18}
-                    >
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis qui esse
-                        molestias? Facilis dolorum error itaque! Sint est labore facilis molestias
-                        quia necessitatibus! Necessitatibus, repellat tenetur sequi doloremque ex
-                        accusantium.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
-                        qui esse molestias? Facilis dolorum error itaque! Sint est labore facilis
-                        molestias quia necessitatibus! Necessitatibus, repellat tenetur sequi
-                        doloremque ex accusantium.Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Nobis qui esse molestias? Facilis dolorum error itaque! Sint est
-                        labore facilis molestias quia necessitatibus! Necessitatibus, repellat
-                        tenetur sequi doloremque ex accusantium.Lorem ipsum dolor sit amet
-                        consectetur adipisicing elit. Nobis qui esse molestias? Facilis dolorum
-                        error itaque! Sint est labore facilis molestias quia necessitatibus!
-                        Necessitatibus, repellat tenetur sequi doloremque ex accusantium.Lorem ipsum
-                        dolor sit amet consectetur adipisicing elit. Nobis qui esse molestias?
-                        Facilis dolorum error itaque! Sint est labore facilis molestias quia
-                        necessitatibus! Necessitatibus, repellat tenetur sequi doloremque ex
-                        accusantium.
+
+                    <Text color={theme.colors.primary} fontFamily={theme.fonts.bold} fontSize={16}>
+                        Autor: {params?.data?.user?.name ?? "Sem autor"}
                     </Text>
+
                     <Text
-                        color={theme.colors.primary}
+                        color={theme.colors.secondary}
                         fontFamily={theme.fonts.semiBold}
                         fontSize={16}
                     >
-                        Fotografia Criativa
-                    </Text>
-                    <Text color={theme.colors.primary} fontFamily={theme.fonts.bold} fontSize={16}>
-                        John Doe
+                        Categoria: {capitalizeFirstLetter(category)}
                     </Text>
                 </S.Body>
             </S.Container>
