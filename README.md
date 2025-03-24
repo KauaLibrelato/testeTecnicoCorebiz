@@ -60,11 +60,14 @@ Obtenha sua chave em: [Unsplash Developers](https://unsplash.com/developers)
     yarn start
     ```
 2. Executar o projeto
-   Com o uso do expo é necessário ou escanear o QRCode com seu dispositivo Android ou Ios, ou clicar nas teclas abaixo para executar pelo emulador
+
+    - Com o uso do expo é necessário ou escanear o QRCode com seu dispositivo Android ou Ios, ou clicar nas teclas abaixo para executar pelo emulador
+    
     ```bash
     a # Clicar na tecla "A" do teclado dentro do terminal faz abrir diretamente pelo emulador Android
     i # Clicar na tecla "I" do teclado dentro do terminal faz abrir diretamente pelo emulador Ios
     ```
+
 
 ## 🧪 Testes (83.3% de cobertura)
 1. Para executar testes com e sem relatório de cobertura
