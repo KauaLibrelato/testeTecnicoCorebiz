@@ -1,6 +1,6 @@
 # Galeria de Arte e Fotografia - Unsplash API
 
-![Exemplo de Interface](https://github.com/user-attachments/assets/48e2f762-ce0d-460b-b805-0d4f44f3c9a2)
+<img src="https://github.com/user-attachments/assets/48e2f762-ce0d-460b-b805-0d4f44f3c9a2" width="300" height="650" alt="Tela de Pesquisa">
 
 
 Um aplicativo React Native para busca e visualização de fotos de alta qualidade usando a API do Unsplash, com simulação de compra de imagens artísticas.
@@ -67,8 +67,8 @@ Obtenha sua chave em: [Unsplash Developers](https://unsplash.com/developers)
     # Para ver cobertura dos testes
     yarn test --coverage
     ```
-![image](https://github.com/user-attachments/assets/533bd76c-7463-4e24-9ed5-58b4215e72b4)
-![image](https://github.com/user-attachments/assets/c82ad6a2-2f51-4446-9ec4-de2945446f57)
+   ![image](https://github.com/user-attachments/assets/533bd76c-7463-4e24-9ed5-58b4215e72b4)
+   ![image](https://github.com/user-attachments/assets/c82ad6a2-2f51-4446-9ec4-de2945446f57)
 
 
 ## 📂 Estrutura do Projeto
@@ -108,16 +108,54 @@ Obtenha sua chave em: [Unsplash Developers](https://unsplash.com/developers)
 - Listagem infinita de imagens
 - Exibição de thumbnails e informações básicas
 
-![IMG-20250324-WA0005](https://github.com/user-attachments/assets/5961a6fd-7caa-479d-a510-3afe5a1b298b)
-![IMG-20250324-WA0006](https://github.com/user-attachments/assets/62feb14e-5290-4f66-b22a-a4baa7df92e5)
+| Pesquisa 1 | Pesquisa 2 |
+|------------|------------|
+| <img src="https://github.com/user-attachments/assets/5961a6fd-7caa-479d-a510-3afe5a1b298b" width="300" alt="Tela de Pesquisa 1"> | <img src="https://github.com/user-attachments/assets/62feb14e-5290-4f66-b22a-a4baa7df92e5" width="300" alt="Tela de Pesquisa 2"> |
 
 #### 2. Tela de Detalhes
 - Imagem em alta resolução
 - Metadados completos (fotógrafo, descrição, categoria)
 - Botão de compra com preço fictício
 
-![IMG-20250324-WA0007](https://github.com/user-attachments/assets/020908a3-a366-415a-b959-b674176e013a)
-![IMG-20250324-WA0008](https://github.com/user-attachments/assets/d4346976-719b-4e6a-af41-e345c94a1ec5)
+| Detalhes 1 | Detalhes 2 |
+|------------|------------|
+| <img src="https://github.com/user-attachments/assets/020908a3-a366-415a-b959-b674176e013a" width="300" alt="Tela de Detalhes 1"> | <img src="https://github.com/user-attachments/assets/d4346976-719b-4e6a-af41-e345c94a1ec5" width="300" alt="Tela de Detalhes 2"> |
+
+## 🚀 Melhorias Planejadas (Versão 1.1)
+
+#### 1. Testes
+- Adicionar testes completos para axiosAdapter
+- Implementar testes para ControlledTextInput
+- Aumentar cobertura de testes para 95%
+
+#### 2. Novas features
+- Expansão de Imagem
+
+    - Zoom e visualização em tela cheia na Tela de Detalhes
+
+    - Gestos para navegar entre fotos sem voltar para a lista
+
+- Fluxo de Compra Aprimorado
+
+    - Modal de confirmação ao clicar em "Comprar"
+
+    - Opções: "Continuar comprando" ou "Ir para o carrinho"
+
+    - Carrinho com lista de itens selecionados
+
+- Favoritos
+
+    - Botão de favoritar em cada item
+
+    - Tela dedicada para fotos favoritadas
+
+    - Persistência local dos favoritos
+
+- Sistema de Categorias
+
+    - Abas ou filtros por categorias populares
+
+    - Sugestões baseadas no histórico de buscas
 
 ## 📄 Licença
 
