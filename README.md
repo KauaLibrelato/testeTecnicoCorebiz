@@ -60,13 +60,16 @@ Obtenha sua chave em: [Unsplash Developers](https://unsplash.com/developers)
     yarn start
     ```
 
-## 🧪 Testes
+## 🧪 Testes (83.3% de cobertura)
 1. Para executar testes com e sem relatório de cobertura
     ```bash
     yarn test
     # Para ver cobertura dos testes
     yarn test --coverage
     ```
+![image](https://github.com/user-attachments/assets/533bd76c-7463-4e24-9ed5-58b4215e72b4)
+![image](https://github.com/user-attachments/assets/c82ad6a2-2f51-4446-9ec4-de2945446f57)
+
 
 ## 📂 Estrutura do Projeto
 1. Estrutura principal
