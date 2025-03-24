@@ -72,16 +72,16 @@ Obtenha sua chave em: [Unsplash Developers](https://unsplash.com/developers)
 1. Estrutura principal
     ```bash
     src/
-├── @types/          # Definições de tipos de imagens e svgs
-├── assets/          # Arquivos estáticos (imagens, fonts, etc.)
-├── components/      # Componentes reutilizáveis
-├── infra/           # Infraestrutura e configurações base
-├── routes/          # Configuração de navegação e rotas
-├── screens/         # Telas/páginas do aplicativo
-├── services/        # Integrações com API e serviços externos
-├── theme/           # Estilos globais, temas e configurações de design
-├── utils/           # Utilitários, helpers e funções auxiliares
-    ```
+   ├── @types/          # Definições de tipos de imagens e svgs
+   ├── assets/          # Arquivos estáticos (imagens, fonts, etc.)
+   ├── components/      # Componentes reutilizáveis
+   ├── infra/           # Infraestrutura e configurações base
+   ├── routes/          # Configuração de navegação e rotas
+   ├── screens/         # Telas/páginas do aplicativo
+   ├── services/        # Integrações com API e serviços externos
+   ├── theme/           # Estilos globais, temas e configurações de design
+   ├── utils/           # Utilitários, helpers e funções auxiliares
+   ```
 
 2. Outros diretórios importantes
     ```bash
