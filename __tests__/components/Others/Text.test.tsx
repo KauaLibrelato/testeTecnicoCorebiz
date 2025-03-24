@@ -2,7 +2,7 @@ import { render } from "@testing-library/react-native";
 import React from "react";
 import { ThemeProvider } from "styled-components/native";
 
-import { mockTheme } from "../../mocks/theme";
+import { mockTheme } from "../../../__mocks__/theme";
 
 import { Text } from "./../../../src/components";
 

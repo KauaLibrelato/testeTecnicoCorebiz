@@ -18,12 +18,13 @@ export function Input({
     }) {
     const theme = useTheme();
     return (
-        <S.Container>
+        <S.Container testID="input-component">
             {label && (
                 <S.Label
                     maxFontSizeMultiplier={1.2}
                     editable={editable}
                     errorMessage={!!errorMessage}
+                    testID="input-label"
                 >
                     {label}
                 </S.Label>
@@ -34,9 +35,12 @@ export function Input({
                 editable={editable}
                 placeholderTextColor={errorMessage ? theme.colors.error : theme.colors.placeholder}
                 maxFontSizeMultiplier={1.2}
+                testID="input-field"
             />
             {errorMessage && (
-                <S.ErrorMessage maxFontSizeMultiplier={1.2}>{errorMessage}</S.ErrorMessage>
+                <S.ErrorMessage testID="input-error" maxFontSizeMultiplier={1.2}>
+                    {errorMessage}
+                </S.ErrorMessage>
             )}
         </S.Container>
     );

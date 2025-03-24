@@ -1,4 +1,4 @@
-import { IPhoto } from "../../src/utils/types";
+import { IPhoto } from "../src/utils/types";
 
 export const photoMock: IPhoto = {
     id: "1",
