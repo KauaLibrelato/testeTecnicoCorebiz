@@ -4,5 +4,9 @@ import * as S from "./TextStyles";
 import { ITextProps } from "./utils/types";
 
 export function Text({ children, ...rest }: ITextProps) {
-    return <S.Text {...rest}>{children}</S.Text>;
+    return (
+        <S.Text maxFontSizeMultiplier={1.2} {...rest}>
+            {children}
+        </S.Text>
+    );
 }
