@@ -17,14 +17,16 @@ export function ProductCard({ data, onPress }: IProductCard) {
         "Without category";
 
     return (
-        <S.Container>
-            <S.TouchableContainer onPress={onPress}>
+        <S.Container testID="product-card-container">
+            <S.TouchableContainer onPress={onPress} testID="product-card-touchable">
                 <S.Miniature
+                    testID="product-card-image"
                     source={{ uri: data?.urls?.regular }}
                     contentFit="cover"
                     placeholder={{ blurhash }}
+                    alt={data?.alt_description ?? "Without description"}
                 />
-                <S.CategoryBadge>
+                <S.CategoryBadge testID="category-badge">
                     <Text
                         fontSize={14}
                         fontFamily={theme.fonts.medium}
@@ -34,7 +36,7 @@ export function ProductCard({ data, onPress }: IProductCard) {
                     </Text>
                 </S.CategoryBadge>
 
-                <S.TextsContainer>
+                <S.TextsContainer testID="texts-container">
                     <Text fontSize={16} fontFamily={theme.fonts.bold} color={theme.colors.primary}>
                         {data?.description ?? data?.alt_description ?? "Without description"}
                     </Text>

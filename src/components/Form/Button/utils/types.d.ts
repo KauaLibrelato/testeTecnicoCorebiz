@@ -4,4 +4,5 @@ export interface IButtonProps {
     disabled?: boolean;
     colorText?: string;
     type: EButtonType;
+    testID?: string;
 }
