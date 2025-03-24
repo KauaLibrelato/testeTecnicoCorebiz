@@ -99,7 +99,7 @@ Obtenha sua chave em: [Unsplash Developers](https://unsplash.com/developers)
     ```bash
     __mocks__/               # Dados mockados para testes
     __tests__/               # Testes automatizados
-    node_modules/        # Dependências do projeto
+    node_modules/            # Dependências do projeto
     ```
 
 3. Arquivos principais
