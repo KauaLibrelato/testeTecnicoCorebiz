@@ -101,24 +101,20 @@ Obtenha sua chave em: [Unsplash Developers](https://unsplash.com/developers)
 ## 📱 Telas
 
 #### 1. Tela de Pesquisa
-Campo de busca
+- Campo de busca
+- Listagem infinita de imagens
+- Exibição de thumbnails e informações básicas
 
-Listagem infinita de imagens
-
-Exibição de thumbnails e informações básicas
 ![IMG-20250324-WA0005](https://github.com/user-attachments/assets/5961a6fd-7caa-479d-a510-3afe5a1b298b)
 ![IMG-20250324-WA0006](https://github.com/user-attachments/assets/62feb14e-5290-4f66-b22a-a4baa7df92e5)
 
-
 #### 2. Tela de Detalhes
-Imagem em alta resolução
+- Imagem em alta resolução
+- Metadados completos (fotógrafo, descrição, categoria)
+- Botão de compra com preço fictício
 
-Metadados completos (fotógrafo, descrição, categoria)
-
-Botão de compra com preço fictício
 ![IMG-20250324-WA0007](https://github.com/user-attachments/assets/020908a3-a366-415a-b959-b674176e013a)
 ![IMG-20250324-WA0008](https://github.com/user-attachments/assets/d4346976-719b-4e6a-af41-e345c94a1ec5)
-
 
 ## 📄 Licença
 
