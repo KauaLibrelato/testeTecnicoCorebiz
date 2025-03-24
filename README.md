@@ -58,6 +58,8 @@ Obtenha sua chave em: [Unsplash Developers](https://unsplash.com/developers)
 1. Iniciar o servidor de desenvolvimento
     ```bash
     yarn start
+    # Ou após colocar a .env pode rodar o comando abaixo para executar um clear no bundle
+    yarn start -c
     ```
 2. Executar o projeto
 
