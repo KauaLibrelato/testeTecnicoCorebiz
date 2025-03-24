@@ -4,8 +4,6 @@ on:
     push:
         branches:
             - master
-    schedule:
-        - cron: "45 07 * * *"
 
 jobs:
     test:
